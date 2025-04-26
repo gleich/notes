@@ -41,7 +41,7 @@ func main() {
 			strings.TrimPrefix(dir, "notes/"),
 			strings.TrimSuffix(filename, ".md"),
 		)
-		newPath := filepath.Join("src/routes", slug, "+page.md")
+		newPath := filepath.Join("src/routes/(notes)/", slug, "+page.md")
 
 		err = os.MkdirAll(filepath.Dir(newPath), 0755)
 		if err != nil {
