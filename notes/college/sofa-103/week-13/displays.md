@@ -1,3 +1,7 @@
+---
+title: 'Displays'
+---
+
 # Displays
 
 ## LCDs (Liquid Crystal Displays)
