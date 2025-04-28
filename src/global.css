@@ -14,5 +14,20 @@ html {
 
 ol,
 ul {
-	list-style-position: outside !important;
+	list-style-position: inside !important;
+	padding-inline-start: 10px;
+}
+
+li {
+	list-style: none;
+	padding-inline-start: 7px;
+}
+
+li::marker {
+	content: '-';
+}
+
+li > p {
+	display: inline-block;
+	margin: 0;
 }

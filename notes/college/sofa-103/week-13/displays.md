@@ -1,8 +1,7 @@
 ---
 title: 'Displays'
+date: 2025-04-28
 ---
-
-# Displays
 
 ## LCDs (Liquid Crystal Displays)
 

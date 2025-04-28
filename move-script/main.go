@@ -8,18 +8,21 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/adrg/frontmatter"
 	"go.mattglei.ch/timber"
 )
 
 type Document struct {
-	Title string `json:"title"`
-	Slug  string `json:"slug"`
+	Title string    `json:"title"`
+	Slug  string    `json:"slug"`
+	Date  time.Time `json:"date"`
 }
 
 type FrontMatter struct {
-	Title string `yaml:"title"`
+	Title string    `yaml:"title"`
+	Date  time.Time `yaml:"date"`
 }
 
 func main() {
@@ -69,6 +72,7 @@ func main() {
 		documents = append(documents, Document{
 			Title: matter.Title,
 			Slug:  slug,
+			Date:  matter.Date,
 		})
 		return nil
 	})
