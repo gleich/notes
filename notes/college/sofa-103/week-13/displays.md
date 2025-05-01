@@ -16,9 +16,22 @@ date: 2025-04-28
 - [links](https://mattglei.ch)
 - code:
 
-```txt
+```python
 print("hello world!")
 
 def main():
     return 0
 ```
+
+### h3 element
+
+#### h4 element
+
+##### h5 element
+
+### table example
+
+| barry | allen |
+| ----- | ----- |
+| he    | is    |
+| so    | cool  |

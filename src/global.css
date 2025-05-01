@@ -31,3 +31,30 @@ li > p {
 	display: inline-block;
 	margin: 0;
 }
+
+code {
+	font-family: 'IBM Plex Mono';
+}
+
+pre {
+	border: 1px solid var(--border);
+	padding: 10px;
+	box-shadow: var(--box-shadow);
+	border-radius: var(--border-radius);
+	margin-top: 10px;
+}
+
+code {
+	font-size: 14px;
+}
+
+pre code {
+	font-size: 15px;
+}
+
+tr,
+th,
+td {
+	border: 1px solid var(--border);
+	padding: 2px 10px;
+}

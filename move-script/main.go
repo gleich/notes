@@ -7,12 +7,15 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 
 	"github.com/adrg/frontmatter"
 	"go.mattglei.ch/timber"
 )
+
+const ROUTES_FOLDER = "src/routes/(notes)/"
 
 type Document struct {
 	Title string    `json:"title"`
@@ -27,6 +30,8 @@ type FrontMatter struct {
 
 func main() {
 	timber.TimeFormat("03:04:05")
+
+	cleanRoutes()
 
 	documents := []Document{}
 	err := filepath.WalkDir("./notes/", func(path string, d fs.DirEntry, err error) error {
@@ -44,7 +49,7 @@ func main() {
 			strings.TrimPrefix(dir, "notes/"),
 			strings.TrimSuffix(filename, ".md"),
 		)
-		newPath := filepath.Join("src/routes/(notes)/", slug, "+page.md")
+		newPath := filepath.Join(ROUTES_FOLDER, slug, "+page.md")
 
 		err = os.MkdirAll(filepath.Dir(newPath), 0755)
 		if err != nil {
@@ -91,4 +96,43 @@ func main() {
 		timber.Fatal(err, "failed to write json data to notes.json file")
 	}
 	timber.Done("wrote json data to", path)
+}
+
+func cleanRoutes() {
+	var dirs []string
+	err := filepath.WalkDir(ROUTES_FOLDER, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return fmt.Errorf("walking %s: %w", path, err)
+		}
+		if d.IsDir() {
+			dirs = append(dirs, path)
+			return nil
+		}
+		if filepath.Ext(d.Name()) == ".md" {
+			if err := os.Remove(path); err != nil {
+				return fmt.Errorf("removing %s: %w", path, err)
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		timber.Fatal(err, "failed cleaning out svelte files")
+	}
+
+	sort.Slice(dirs, func(i, j int) bool {
+		return len(dirs[i]) > len(dirs[j])
+	})
+
+	for _, dir := range dirs {
+		entries, err := os.ReadDir(dir)
+		if err != nil {
+			continue
+		}
+		if len(entries) == 0 {
+			err = os.Remove(dir)
+			if err != nil {
+				timber.Fatal(err, "failed to delete", dir)
+			}
+		}
+	}
 }

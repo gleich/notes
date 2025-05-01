@@ -19,18 +19,22 @@
 <DynamicHead title={note.title} description="foo bar" />
 
 <div class="header">
-	<div class="title">
-		<NavLogo width="50px" />
-		<h1>{note.title}</h1>
-	</div>
-	<div class="data">
-		<p>{note.slug.replaceAll('/', ' → ')}</p>
-		<p>{dayjs(note.date).format('dddd, MMMM Do, YYYY')}</p>
-	</div>
+	<a href="/" class="title">
+		<div class="left">
+			<NavLogo width="50px" />
+			<h1>{note.title}</h1>
+		</div>
+		<div class="right">
+			<div class="data">
+				<p>{note.slug.replaceAll('/', ' → ')}</p>
+				<p>{dayjs(note.date).format('dddd, MMMM Do, YYYY')}</p>
+			</div>
+		</div>
+	</a>
 </div>
 
 <Card padding="0">
-	<div class="body">
+	<div class="note-body">
 		{@render children()}
 	</div>
 </Card>
@@ -43,14 +47,46 @@
 	.title {
 		display: flex;
 		gap: 10px;
+		justify-content: space-between;
+		color: inherit;
+		text-decoration: inherit;
+	}
+
+	.left {
+		display: flex;
+		gap: 10px;
 		align-items: center;
+		justify-content: center;
 	}
 
 	.data {
 		color: grey;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
 	}
 
-	.body {
+	.note-body {
 		padding: 10px;
+	}
+
+	:global(
+		.note-body h1,
+		.note-body h2,
+		.note-body h3,
+		.note-body h4,
+		.note-body h5,
+		.note-body h6
+	) {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: var(--green-foreground);
+		background-color: var(--green-background);
+		padding: 5px 10px;
+		border-radius: 3px;
+	}
+
+	:global(.note-body > :is(h1, h2, h3, h4, h5, h6):first-child) {
+		margin-top: 0;
 	}
 </style>
