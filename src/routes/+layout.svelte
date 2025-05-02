@@ -2,15 +2,10 @@
 	import type { Snippet } from 'svelte';
 	import '@gleich/ui/styles.css';
 	import '../global.css';
-	import { Copyright, DynamicHead } from '@gleich/ui';
+	import { Copyright } from '@gleich/ui';
 
 	const { children }: { children: Snippet } = $props();
 </script>
-
-<DynamicHead
-	title="Notes"
-	description="Matt Gleich's personal notes from college and life in general"
-/>
 
 <main>
 	<div class="container">

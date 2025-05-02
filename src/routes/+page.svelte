@@ -1,7 +1,12 @@
 <script lang="ts">
-	import { NavLogo } from '@gleich/ui';
+	import { DynamicHead, NavLogo } from '@gleich/ui';
 	import notes from './notes.json';
 </script>
+
+<DynamicHead
+	title="Notes"
+	description="Matt Gleich's personal notes from college and life in general"
+/>
 
 <div class="header">
 	<NavLogo width="55px" />
