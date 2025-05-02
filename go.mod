@@ -1,4 +1,4 @@
-module go.mattglei.ch/mattglei.ch/notes
+module go.mattglei.ch/notes
 
 go 1.24.2
 
