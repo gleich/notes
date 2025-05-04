@@ -3,7 +3,7 @@
 	import type { Snippet } from 'svelte';
 	import notes from '../notes.json';
 	import { error } from '@sveltejs/kit';
-	import { Card, DynamicHead, NavLogo } from '@gleich/ui';
+	import { Card, DynamicHead, NavLogo, Scrolling } from '@gleich/ui';
 	import dayjs from 'dayjs';
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
 
@@ -22,7 +22,9 @@
 	<a href="/" class="title">
 		<div class="left">
 			<NavLogo width="50px" />
-			<h1>{note.title}</h1>
+			<Scrolling>
+				<h1>{note.title}</h1>
+			</Scrolling>
 		</div>
 		<div class="right">
 			<div class="data">
