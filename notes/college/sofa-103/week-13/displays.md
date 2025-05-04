@@ -1,7 +1,7 @@
----
-title: 'Displays'
-date: 2025-04-28
----
++++
+title =  "Displays"
+date = 2025-04-28
++++
 
 ## LCDs (Liquid Crystal Displays)
 
