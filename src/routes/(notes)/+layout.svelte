@@ -21,7 +21,7 @@
 <div class="header">
 	<a href="/" class="title">
 		<div class="left">
-			<NavLogo width="50px" />
+			<NavLogo />
 			<Scrolling>
 				<h1>{note.title}</h1>
 			</Scrolling>

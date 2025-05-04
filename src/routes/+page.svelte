@@ -9,7 +9,7 @@
 />
 
 <div class="header">
-	<NavLogo width="50px" />
+	<NavLogo />
 	<h1>Matt Gleich's Notes</h1>
 </div>
 
