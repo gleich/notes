@@ -70,6 +70,17 @@
 		padding: 10px;
 	}
 
+	@media (max-width: 800px) {
+		.title {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.data {
+			align-items: flex-start;
+		}
+	}
+
 	:global(
 		.note-body h1,
 		.note-body h2,
@@ -78,7 +89,7 @@
 		.note-body h5,
 		.note-body h6
 	) {
-		margin-top: 10px;
+		margin-top: 40px;
 		margin-bottom: 10px;
 		color: var(--green-foreground);
 		background-color: var(--green-background);

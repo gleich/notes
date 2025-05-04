@@ -9,7 +9,7 @@
 />
 
 <div class="header">
-	<NavLogo width="55px" />
+	<NavLogo width="50px" />
 	<h1>Matt Gleich's Notes</h1>
 </div>
 
@@ -30,6 +30,7 @@
 	.header {
 		display: flex;
 		gap: 10px;
+		align-items: center;
 	}
 
 	.notes {
