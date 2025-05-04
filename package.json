@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite dev --open",
 		"build": "./move && vite build",
-		"build-move": "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags=\"-s -w\" -o move move-script/main.go",
+		"build-move": "cd scripts/move && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags=\"-s -w\" -o ../../move .",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
