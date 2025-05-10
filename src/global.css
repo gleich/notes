@@ -46,6 +46,10 @@ pre {
 
 code {
 	font-size: 14px;
+	border: 1px solid var(--border);
+	padding: 0px 7px;
+	border-radius: 3px;
+	background-color: rgb(71, 71, 71);
 }
 
 pre code {

@@ -36,6 +36,7 @@
 	.notes {
 		margin-top: 30px;
 		display: grid;
+		gap: 10px;
 		grid-template-columns: 1fr 1fr;
 	}
 
