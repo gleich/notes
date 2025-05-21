@@ -2,7 +2,9 @@
 	import type { Snippet } from 'svelte';
 	import '@gleich/ui/styles.css';
 	import '../global.css';
-	import { Layout } from '@gleich/ui';
+	import { Layout, siteName } from '@gleich/ui';
+
+	siteName.set('notes.mattglei.ch');
 
 	const { children }: { children: Snippet } = $props();
 </script>
