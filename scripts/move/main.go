@@ -30,6 +30,7 @@ type FrontMatter struct {
 
 func main() {
 	timber.TimeFormat("03:04:05")
+	timber.Timezone(time.Local)
 
 	cleanRoutes()
 
