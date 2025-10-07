@@ -6,6 +6,7 @@
 	import { Card, DynamicHead, NavLogo, Scrolling } from '@gleich/ui';
 	import dayjs from 'dayjs';
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
+	import { resolve } from '$app/paths';
 
 	dayjs.extend(advancedFormat);
 
@@ -20,7 +21,7 @@
 <DynamicHead title={note.title} description={folderPath} />
 
 <div class="header">
-	<a href="/" class="title">
+	<a href={resolve('/')} class="title">
 		<div class="left">
 			<NavLogo />
 			<Scrolling>
@@ -92,12 +93,29 @@
 		.note-body h5,
 		.note-body h6
 	) {
-		margin-top: 40px;
+		margin-top: 30px;
 		margin-bottom: 10px;
 		color: var(--green-foreground);
 		background-color: var(--green-background);
 		padding: 5px 10px;
 		border-radius: 3px;
+	}
+
+	:global(.note-body h1) {
+		font-size: 20px;
+	}
+
+	:global(.note-body h2) {
+		font-size: 18px;
+	}
+
+	:global(.note-body h3) {
+		font-size: 16px;
+	}
+
+	:global(.note-body h4, .note-body h5, .note-body h6) {
+		font-size: 13px;
+		font-style: normal;
 	}
 
 	:global(.note-body > :is(h1, h2, h3, h4, h5, h6):first-child) {

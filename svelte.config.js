@@ -4,10 +4,10 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { createHighlighter } from 'shiki';
 import { escapeSvelte } from 'mdsvex';
 
-const theme = 'github-dark';
+const theme = 'gruvbox-dark-soft';
 const highlighter = await createHighlighter({
 	themes: [theme],
-	langs: ['javascript', 'typescript', 'python']
+	langs: ['javascript', 'typescript', 'python', 'c']
 });
 
 const config = {

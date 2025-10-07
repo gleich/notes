@@ -16,6 +16,7 @@
 <div class="notes">
 	{#each notes as note (note.slug)}
 		<Card>
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 			<a href={note.slug} class="note">
 				<h4>{note.title}</h4>
 				<div class="note-data">
