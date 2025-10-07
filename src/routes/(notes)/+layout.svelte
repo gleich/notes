@@ -11,7 +11,7 @@
 
 	const { children }: { children: Snippet } = $props();
 	const note = notes.find((n) => n.slug === page.url.pathname.slice(1));
-	const folderPath = note ? dayjs(note.date).format('dddd, MMMM Do, YYYY') : 'Note not found';
+	const folderPath = note ? note.slug.replaceAll('/', ' → ') : 'Note not found';
 	if (!note) {
 		error(404);
 	}
