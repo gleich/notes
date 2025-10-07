@@ -11,12 +11,13 @@
 
 	const { children }: { children: Snippet } = $props();
 	const note = notes.find((n) => n.slug === page.url.pathname.slice(1));
+	const folderPath = note ? dayjs(note.date).format('dddd, MMMM Do, YYYY') : 'Note not found';
 	if (!note) {
 		error(404);
 	}
 </script>
 
-<DynamicHead title={note.title} description="foo bar" />
+<DynamicHead title={note.title} description={folderPath} />
 
 <div class="header">
 	<a href="/" class="title">
@@ -28,7 +29,7 @@
 		</div>
 		<div class="right">
 			<div class="data">
-				<p>{note.slug.replaceAll('/', ' → ')}</p>
+				<p>{folderPath}</p>
 				<p>{dayjs(note.date).format('dddd, MMMM Do, YYYY')}</p>
 			</div>
 		</div>
