@@ -6,13 +6,12 @@
 	import { Card, DynamicHead, NavLogo, Scrolling } from '@gleich/ui';
 	import dayjs from 'dayjs';
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
-	import { resolve } from '$app/paths';
 
 	dayjs.extend(advancedFormat);
 
 	const { children }: { children: Snippet } = $props();
 	const note = notes.find((n) => n.slug === page.url.pathname.slice(1));
-	const folderPath = note ? note.slug.replaceAll('/', ' → ') : 'Note not found';
+	const folderPath = note ? note.slug : 'Note not found';
 	if (!note) {
 		error(404);
 	}
@@ -21,7 +20,7 @@
 <DynamicHead title={note.title} description={folderPath} />
 
 <div class="header">
-	<a href={resolve('/')} class="title">
+	<a href="/" class="title">
 		<div class="left">
 			<NavLogo />
 			<Scrolling>
