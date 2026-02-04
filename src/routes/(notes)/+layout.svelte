@@ -6,6 +6,7 @@
 	import { Card, DynamicHead, NavLogo, Scrolling } from '@gleich/ui';
 	import dayjs from 'dayjs';
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
+	import { resolve } from '$app/paths';
 
 	dayjs.extend(advancedFormat);
 
@@ -20,7 +21,7 @@
 <DynamicHead title={note.title} description={folderPath} />
 
 <div class="header">
-	<a href="/" class="title">
+	<a href={resolve('/')} class="title">
 		<div class="left">
 			<NavLogo />
 			<Scrolling>

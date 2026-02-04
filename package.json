@@ -5,7 +5,7 @@
 	"type": "module",
 	"packageManager": "pnpm@10.10.0",
 	"scripts": {
-		"dev": "vite dev --open",
+		"dev": "go run scripts/move/main.go && vite dev --open",
 		"build": "./move && vite build",
 		"build-move": "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags=\"-s -w\" -o move scripts/move/main.go",
 		"preview": "vite preview",

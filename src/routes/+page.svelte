@@ -20,7 +20,7 @@
 			<a href={note.slug} class="note">
 				<h4>{note.title}</h4>
 				<div class="note-data">
-					<p>{note.slug.replaceAll('/', ' → ')}</p>
+					<p>{note.slug}</p>
 				</div>
 			</a>
 		</Card>
