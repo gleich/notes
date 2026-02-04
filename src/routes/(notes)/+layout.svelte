@@ -12,29 +12,46 @@
 
 	const { children }: { children: Snippet } = $props();
 	const note = notes.find((n) => n.slug === page.url.pathname.slice(1));
-	const folderPath = note ? note.slug : 'Note not found';
-	if (!note) {
+	const paths: string[] = [];
+	if (note) {
+		const parts = note.slug.split('/').slice(0, -1);
+		let path = '/';
+		for (const part of parts) {
+			path += part + '/';
+			paths.push(path);
+		}
+		console.log(paths);
+	} else {
 		error(404);
 	}
 </script>
 
-<DynamicHead title={note.title} description={folderPath} />
+<DynamicHead title={note.title} description={note ? note.slug : 'Note not found'} />
 
 <div class="header">
-	<a href={resolve('/')} class="title">
-		<div class="left">
+	<div class="title">
+		<a href={resolve('/')} class="left">
 			<NavLogo />
 			<Scrolling>
 				<h1>{note.title}</h1>
 			</Scrolling>
-		</div>
+		</a>
 		<div class="right">
 			<div class="data">
-				<p>{folderPath}</p>
-				<p>{dayjs(note.date).format('dddd, MMMM Do, YYYY')}</p>
+				{#if note}
+					<p>
+						{#each paths as path, i (path)}
+							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+							{#if i > 0}<span>/</span>{/if}<a href={path} class="path-url"
+								>{path.split('/').at(-2)}</a
+							>
+						{/each}
+					</p>
+					<p>{dayjs(note.date).format('dddd, MMMM Do, YYYY')}</p>
+				{/if}
 			</div>
 		</div>
-	</a>
+	</div>
 </div>
 
 <Card padding="0">
@@ -52,8 +69,6 @@
 		display: flex;
 		gap: 10px;
 		justify-content: space-between;
-		color: inherit;
-		text-decoration: inherit;
 	}
 
 	.left {
@@ -61,6 +76,8 @@
 		gap: 10px;
 		align-items: center;
 		justify-content: center;
+		color: inherit;
+		text-decoration: inherit;
 	}
 
 	.data {
@@ -72,6 +89,10 @@
 
 	.note-body {
 		padding: 10px;
+	}
+
+	.path-url {
+		color: inherit;
 	}
 
 	@media (max-width: 800px) {
