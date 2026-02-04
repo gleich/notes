@@ -7,7 +7,7 @@ import { escapeSvelte } from 'mdsvex';
 const theme = 'gruvbox-dark-soft';
 const highlighter = await createHighlighter({
 	themes: [theme],
-	langs: ['javascript', 'typescript', 'python', 'c']
+	langs: ['javascript', 'typescript', 'python', 'c', 'racket']
 });
 
 const config = {
