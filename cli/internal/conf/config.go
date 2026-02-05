@@ -3,20 +3,16 @@ package conf
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 )
 
 type Config struct {
 	Path string
 }
 
-func (c Config) ValidatePath() error {
-	pwd, err := os.Getwd()
+func (c Config) GoToPath() error {
+	err := os.Chdir(c.Path)
 	if err != nil {
-		return fmt.Errorf("getting working working directory: %w", err)
-	}
-	if filepath.Clean(pwd) != filepath.Clean(c.Path) {
-		return fmt.Errorf("please run program from %s", c.Path)
+		return fmt.Errorf("changing directory to %s: %w", c.Path, err)
 	}
 	return nil
 }

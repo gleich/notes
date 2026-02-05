@@ -5,6 +5,8 @@ date: 2026-02-04
 
 # Evaluation Context
 
+foo bar
+
 ```racket
 #lang racket
 

@@ -3,7 +3,7 @@ package cli
 import (
 	"github.com/spf13/cobra"
 	"go.mattglei.ch/notes/cli/internal/conf"
-	"go.mattglei.ch/notes/cli/internal/notes"
+	"go.mattglei.ch/notes/cli/internal/note"
 	"go.mattglei.ch/timber"
 )
 
@@ -19,13 +19,18 @@ var (
 				if err != nil {
 					timber.Fatal(err, "failed to read config")
 				}
-				err = config.ValidatePath()
+				err = config.GoToPath()
 				if err != nil {
 					timber.Fatal(err, "failed to validate path")
 				}
 			}
 
-			err := notes.Move()
+			notes, err := note.Notes()
+			if err != nil {
+				timber.Fatal(err, "failed to get list of notes")
+			}
+
+			err = note.Move(notes)
 			if err != nil {
 				timber.Fatal(err, "failed to move notes")
 			}
