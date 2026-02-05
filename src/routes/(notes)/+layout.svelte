@@ -20,7 +20,6 @@
 			path += part + '/';
 			paths.push(path);
 		}
-		console.log(paths);
 	} else {
 		error(404);
 	}
