@@ -6,7 +6,7 @@
 	"packageManager": "pnpm@10.10.0",
 	"scripts": {
 		"dev": "go run cli/main.go move && vite dev --open",
-		"build": "./notescli move --skip-path-notes && vite build",
+		"build": "./notescli move --skip-path-set && vite build",
 		"build-notescli": "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags=\"-s -w\" -o notescli cli/main.go",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
