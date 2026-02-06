@@ -13,6 +13,8 @@ import (
 	"github.com/adrg/frontmatter"
 )
 
+const NOTES_DIRECTORY = "./notes/"
+
 type Note struct {
 	Title string    `json:"title"`
 	Slug  string    `json:"slug"`
@@ -29,7 +31,7 @@ type metadata struct {
 
 func Notes() ([]Note, error) {
 	notes := []Note{}
-	err := filepath.WalkDir("./notes/", func(path string, d fs.DirEntry, err error) error {
+	err := filepath.WalkDir(NOTES_DIRECTORY, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return fmt.Errorf("walking %s: %w", path, err)
 		}
@@ -65,7 +67,7 @@ func Notes() ([]Note, error) {
 		return nil
 	})
 	if err != nil {
-		return []Note{}, fmt.Errorf("walking notes directory failed: %w", err)
+		return []Note{}, fmt.Errorf("walking %s: %w", NOTES_DIRECTORY, err)
 	}
 
 	sort.SliceStable(notes, func(i, j int) bool {
