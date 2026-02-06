@@ -1,7 +1,9 @@
 package note
 
 import (
+	"errors"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/charmbracelet/huh"
@@ -34,6 +36,9 @@ func Select(title string, notes []Note) (Note, error) {
 		WithTheme(prompt.Theme).
 		Run()
 	if err != nil {
+		if errors.Is(err, huh.ErrUserAborted) {
+			os.Exit(0)
+		}
 		return Note{}, fmt.Errorf("failed to run selection prompt: %w", err)
 	}
 	return selected, nil

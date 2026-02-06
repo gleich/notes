@@ -1,6 +1,8 @@
 package cli
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 	"go.mattglei.ch/notes/cli/internal/drawing"
 	"go.mattglei.ch/notes/cli/internal/note"
@@ -15,7 +17,6 @@ var drawingCommand = &cobra.Command{
 		if err != nil {
 			timber.Fatal(err, "failed to find drawing")
 		}
-		timber.Debug(path)
 
 		notes, err := note.Notes()
 		if err != nil {
@@ -26,7 +27,23 @@ var drawingCommand = &cobra.Command{
 		if err != nil {
 			timber.Fatal(err, "failed to ask for which note to apply drawing to")
 		}
-		timber.Debug(note)
+
+		folder, err := drawing.CreateAssetsFolder(note)
+		if err != nil {
+			timber.Fatal(err, "failed to create assets folder for drawing")
+		}
+
+		movedPath, err := drawing.MovePDF(path, folder)
+		if err != nil {
+			timber.Fatal(err, "failed to move", path, "to", folder)
+		}
+
+		err = drawing.ConvertPDF(movedPath, folder)
+		if err != nil {
+			timber.Fatal(err, "failed to convert pdf to webp images")
+		}
+		fmt.Println()
+		timber.Done("created SVGs from PDF. Will be injected into markdown files when moved")
 	},
 }
 

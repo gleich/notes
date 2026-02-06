@@ -44,11 +44,6 @@ func Notes() ([]Note, error) {
 		)
 		destination := filepath.Join("src/routes/(notes)/", slug, "+page.md")
 
-		err = os.MkdirAll(filepath.Dir(destination), 0755)
-		if err != nil {
-			return fmt.Errorf("%w failed to make parent directory for: %s", err, destination)
-		}
-
 		b, err := os.ReadFile(path)
 		if err != nil {
 			return fmt.Errorf("%w failed to read binary from: %s", err, path)

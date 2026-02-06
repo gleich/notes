@@ -7,6 +7,10 @@ h6 {
 	font-family: 'Inter';
 }
 
+h1 {
+	font-size: 2.5rem;
+}
+
 html {
 	font-family: 'IBM Plex Sans';
 	font-weight: 500;
@@ -30,27 +34,6 @@ li::marker {
 li > p {
 	display: inline-block;
 	margin: 0;
-}
-
-code {
-	font-family: 'IBM Plex Mono';
-}
-
-pre {
-	border: 1px solid var(--border);
-	padding: 10px;
-	box-shadow: var(--box-shadow);
-	border-radius: var(--border-radius);
-	margin-top: 10px;
-}
-
-code {
-	font-size: 13px;
-	border-radius: 3px;
-}
-
-pre code {
-	font-size: 14px;
 }
 
 tr,

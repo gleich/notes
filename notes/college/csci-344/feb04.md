@@ -29,3 +29,11 @@ r2))))
           ((pair? xs) (countk (cdr xs) (lambda (n) (k (+ 1 n)))))
           (else "Bad List")))
 ```
+
+## Drawing Example
+
+<!-- DRAWING -->
+
+## Another Drawing Example
+
+<!-- DRAWING -->
