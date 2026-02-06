@@ -1,7 +1,10 @@
 package cli
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
+	"go.mattglei.ch/notes/cli/internal/command"
 	"go.mattglei.ch/notes/cli/internal/conf"
 	"go.mattglei.ch/notes/cli/internal/note"
 	"go.mattglei.ch/timber"
@@ -24,8 +27,18 @@ var newCommand = &cobra.Command{
 		if err != nil {
 			timber.Fatal(err, "failed to ask for new note")
 		}
-		timber.Debug(newNote.Title)
-		timber.Debug(newNote.Path)
+
+		err = newNote.Create()
+		if err != nil {
+			timber.Fatal(err, "failed to create new note")
+		}
+		timber.Done("created", newNote.Path)
+
+		err = command.Run("code", "--goto", fmt.Sprintf("%s:%d", newNote.Path, 6), newNote.Path)
+		if err != nil {
+			timber.Fatal(err, "failed to open file in vscode")
+		}
+		timber.Done("opened file in vscode")
 	},
 }
 

@@ -18,7 +18,7 @@ const NOTES_DIRECTORY = "./notes/"
 type Note struct {
 	Title string    `json:"title"`
 	Slug  string    `json:"slug"`
-	Date  time.Time `json:"dates"`
+	Date  time.Time `json:"date"`
 
 	Path            string `json:"-"`
 	DestinationPath string `json:"-"`

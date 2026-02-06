@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/huh"
+	"github.com/goccy/go-yaml"
 	"go.mattglei.ch/notes/cli/internal/prompt"
 )
 
@@ -65,4 +66,31 @@ func Ask() (Note, error) {
 	note.Date = time.Now()
 
 	return note, nil
+}
+
+func (n Note) Create() error {
+	_, err := os.Stat(n.Path)
+	if !errors.Is(err, fs.ErrNotExist) {
+		return fs.ErrExist
+	}
+
+	meta, err := yaml.Marshal(metadata{
+		Title: n.Title,
+		Date:  n.Date,
+	})
+	if err != nil {
+		return fmt.Errorf("encoding metadata to YAML: %w", err)
+	}
+
+	markdown := strings.Builder{}
+	markdown.WriteString("---\n")
+	markdown.WriteString(string(meta))
+	markdown.WriteString("---\n\n")
+
+	err = os.WriteFile(n.Path, []byte(markdown.String()), 0655)
+	if err != nil {
+		return fmt.Errorf("writing to %s: %w", n.Path, err)
+	}
+
+	return nil
 }
