@@ -27,7 +27,7 @@ li {
 	padding-inline-start: 7px;
 }
 
-li::marker {
+ul > li::marker {
 	content: '-';
 }
 

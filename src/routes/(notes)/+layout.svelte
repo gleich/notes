@@ -140,6 +140,10 @@
 		font-style: normal;
 	}
 
+	:global(.note-body strong) {
+		color: var(--yellow-foreground);
+	}
+
 	:global(.note-body > :is(h1, h2, h3, h4, h5, h6):first-child) {
 		margin-top: 0;
 	}
@@ -148,26 +152,19 @@
 		border: 1px solid var(--border);
 		box-shadow: var(--box-shadow);
 		border-radius: var(--border-radius);
-		padding: 50px 30px;
+		padding: 20px 30px;
 		display: flex;
 		justify-content: center;
-		max-width: 100%;
+		align-items: center;
+		margin-bottom: 15px;
+		background-color: var(--section-name-background-color);
 	}
 
-	:global(.note-body .drawing .drawing-scale) {
-		max-width: 100%;
-		width: calc(100% / 2.2);
-		display: flex;
-		align-content: center;
-		justify-content: center;
-	}
-
-	:global(.note-body .drawing .drawing-scale img) {
-		max-width: 100%;
-		height: auto;
-
-		transform: scale(2.2);
-		transform-origin: center;
+	:global(.note-body .drawing svg) {
+		width: 220%; /* or something like 2.2em/2.2rem/etc */
+		height: auto; /* keep aspect ratio */
+		max-width: 100%; /* optional: keep it from exceeding container */
+		display: block;
 	}
 
 	/* CODE RELATED STYLES */
@@ -199,7 +196,11 @@
 
 	@media (max-width: 500px) {
 		:global(.note-body .drawing) {
-			padding: 35px 10px;
+			padding: 10px 0px;
+		}
+
+		:global(.note-body .drawing svg) {
+			height: 200%;
 		}
 	}
 </style>

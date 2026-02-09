@@ -19,11 +19,11 @@ func Find() (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("getting user's home directory: %w", err)
 	}
-	documentsFolder := filepath.Join(home, "Documents")
+	downloadsFolder := filepath.Join(home, "Downloads")
 
-	entries, err := os.ReadDir(documentsFolder)
+	entries, err := os.ReadDir(downloadsFolder)
 	if err != nil {
-		return "", fmt.Errorf("reading directory %s failed: %w", documentsFolder, err)
+		return "", fmt.Errorf("reading directory %s failed: %w", downloadsFolder, err)
 	}
 
 	var (
@@ -32,8 +32,8 @@ func Find() (string, error) {
 	)
 	for _, entry := range entries {
 		name := entry.Name()
-		if !entry.IsDir() && strings.HasSuffix(name, "drawing.pdf") {
-			path := filepath.Join(documentsFolder, name)
+		if !entry.IsDir() && strings.HasSuffix(name, ".pdf") {
+			path := filepath.Join(downloadsFolder, name)
 			stat, err := os.Stat(path)
 			if err != nil {
 				return "", fmt.Errorf("getting status of %s: %w", path, err)
@@ -47,6 +47,9 @@ func Find() (string, error) {
 	}
 	if file == "" {
 		return "", errors.New("no drawing found")
+	}
+	if time.Since(modTime) > 2*time.Minute {
+		return "", errors.New("found document is too old")
 	}
 	return file, nil
 }

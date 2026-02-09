@@ -39,24 +39,18 @@ func Move(notes []Note) error {
 				)
 				systemPath := filepath.Join("static", path)
 				// check to make sure file exists
-				_, err = os.Stat(systemPath)
+				svg, err := os.ReadFile(systemPath)
 				if err != nil {
-					return err
+					return fmt.Errorf("reading svg: %w", err)
 				}
 
 				patchedMarkdown.WriteString(
-					"\n<div class=\"drawing\"><div class=\"drawing-scale\">",
+					"\n<div class=\"drawing\">",
 				)
-				fmt.Fprintf(
-					&patchedMarkdown,
-					`<img alt="Drawing #%d" src="%s"/>`,
-					drawingIndex,
-					path,
-				)
-				patchedMarkdown.WriteString("</div></div>\n")
+				patchedMarkdown.WriteString(string(svg))
+				patchedMarkdown.WriteString("</div>\n")
 				drawingIndex++
 			} else {
-
 				patchedMarkdown.WriteString(line)
 			}
 		}

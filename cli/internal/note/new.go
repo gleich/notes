@@ -47,7 +47,8 @@ func Ask() (Note, error) {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewInput().Title("Title?").Value(&note.Title),
-			huh.NewSelect[string]().Title("Folder?").
+			huh.NewSelect[string]().
+				Title("Folder?").
 				Options(folders...).
 				Value(&folder).
 				Filtering(true),
