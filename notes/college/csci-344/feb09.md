@@ -23,3 +23,15 @@ date: 2026-02-09T09:17:47.883826-05:00
 (fnull? fnil) ; #t
 (fpair? fnil) ; #f
 ```
+
+# Lexical Analysis
+
+Example:
+
+```
+let x = 99, y = 1 in x + y
+```
+
+- Words: `in`, `x`, `99`
+- Phrase: `x + y`
+  - Made up of words
